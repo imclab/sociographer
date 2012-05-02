@@ -2,7 +2,7 @@
     "format": "xchat",
     "synonyms": {},
     "context": {},
-    "convert_to_lower": true,
+    "case_insensitive": true,
     "strip_trailing_underscores": true,
 
     "style": {

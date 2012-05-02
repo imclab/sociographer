@@ -11,7 +11,7 @@ import math
 
 def generate_counts_and_connections(synopsis,
                                     synonyms=None,
-                                    convert_to_lower=True,
+                                    case_insensitive=True,
                                     strip_trailing_underscores=False):
     if synonyms is None:
         synonyms = {}
@@ -19,17 +19,24 @@ def generate_counts_and_connections(synopsis,
     connections = {}
     counts = {}
 
+    if case_insensitive:
+        nick_mappings = {}
+
     def process_nick(nick):
-        if convert_to_lower:
-            nick = nick.lower()
         if strip_trailing_underscores:
             nick = nick.rstrip('_')
         return nick
 
     for d in synopsis:
         from_, to = sorted((process_nick(d['from']), process_nick(d['to'])))
+
         from_ = synonyms.get(from_, from_)
+        if case_insensitive:
+            from_ = nick_mappings.setdefault(from_.lower(), from_)
+
         to = synonyms.get(to, to)
+        if case_insensitive:
+            to = nick_mappings.setdefault(to.lower(), to)
 
         if from_ == to:
             continue
@@ -55,7 +62,7 @@ def generate_graph(counts, connections, **ctx):
         buf.write('"{nick}" [fontsize="{size}px" fontcolor="{color}"];\n'.format(
             nick=nick,
             size=int(style['nick_size_minimum'] + style['nick_size_multiplier'] * math.log(count, style['nick_size_log_base'])),
-            color=palette[(binascii.crc32(nick) & 0xffffffff) % len(palette)]
+            color=palette[(binascii.crc32(nick.lower()) & 0xffffffff) % len(palette)]
         ))
 
     for (from_, to), count in connections.iteritems():
@@ -83,7 +90,7 @@ def generate_dot(input_fn, output_fn=None, **ctx):
     counts, connections = generate_counts_and_connections(
         synopsis,
         ctx['synonyms'],
-        ctx['convert_to_lower'],
+        ctx['case_insensitive'],
         ctx['strip_trailing_underscores']
     )
 
