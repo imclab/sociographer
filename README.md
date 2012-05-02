@@ -3,7 +3,7 @@
 Ever wanted a cool representation of social graphs from conversation logs?
 Probably not, but check it out:
 
-![Social Graph of #haskell @ irc.freenode.net](http://i.imgur.com/N07U5.jpg)
+![Social Graph of #haskell @ irc.freenode.net](http://i.imgur.com/gCysS.jpg)
 
 Pretty neat, huh?
 
