@@ -1,0 +1,35 @@
+{
+    "format": "xchat",
+    "synonyms": {},
+    "context": {},
+    "convert_to_lower": true,
+    "strip_trailing_underscores": true,
+
+    "style": {
+        "font": "Cantarell",
+        "background_color": "black",
+
+        "nick_size_minimum": 10,
+        "nick_size_multiplier": 2,
+        "nick_size_log_base": 1.5,
+
+        "relation_size_minimum": 1,
+        "relation_size_multipler": 1,
+        "relation_size_log_base": 10,
+
+        "relation_base_color": "#ffffff",
+        "relation_alpha_exponent": 0.2,
+        "relation_min_alpha": 40,
+        "relation_max_alpha": 128,
+
+        "palette": [
+            "#fce94fff",
+            "#fcaf3eff",
+            "#e9b96eff",
+            "#8ae234ff",
+            "#729fcfff",
+            "#ad7fa8ff",
+            "#ef2929ff"
+        ]
+    }
+}
