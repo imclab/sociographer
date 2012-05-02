@@ -47,7 +47,7 @@ def generate_graph(counts, connections, **ctx):
     palette = style['palette']
 
     buf = StringIO()
-    buf.write('graph {{ edge [arrowhead="dot"]; graph [bgcolor="{background_color}"]; node [shape=none fontname="{font}"];\n'.format(
+    buf.write('graph {{ graph [K=0.8 bgcolor="{background_color}"]; node [shape=none fontname="{font}"];\n'.format(
         font=style["font"],
         background_color=style["background_color"]
     ))
